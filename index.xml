@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>https://liiblue.github.io/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Jan 2020 17:45:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://liiblue.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>你可能没有细究过的TCP/IP</title>
+      <link>https://liiblue.github.io/post/blog/</link>
+      <pubDate>Thu, 02 Jan 2020 17:45:11 +0800</pubDate>
+      
+      <guid>https://liiblue.github.io/post/blog/</guid>
+      <description>网络技术 TCP/IP
+TCP/IP深入学习
+概述
+作为互联网时代伟大发明的TCP/IP技术可以说对当今时代产生了深刻的影响。经过近一个月的学习摸索，基本清楚了TCP/IP的面貌。由于TCP/IP在OS中位于内核态，很多细节其实用户无法感知，所以自己对于TCP/IP会有一些疑惑。关于其中几个点经过查阅一些书籍、博客并结合自己的一些理解，在此整理精炼成帖。
+疑惑1 — 关于拥塞
+疑惑一：无论是满启动还是拥塞避免阶段，拥塞窗口都在增加，理论上一定会碰到拥塞点，为什么平时感觉不到拥塞呢？  看了很多书和文献以后可能的解答如下：
+1、OS中对接收窗口的最大设定多年未动，如windows在不启用“TCP Window Option”情况下，最大接收窗口仅64KB。然而网络进步，很多环境的拥塞点远在64kb以上，即发送窗口永远触碰不到拥塞点 2、很多应用场景是交互式小数据交换，如聊天等，不会有拥塞的可能 3、有些应用在传输数据时采用同步方式，可能需要的窗口非常小（如采用了同步方式的NFS写操作，每发一个写请求就停下来等回复，而一个写请求可能仅有4kb） 4、即便偶尔拥塞，持续时间也不足以长到能感受出来，除非抓包看包交换细节  疑惑2 — 关于超时重传
+疑惑二： 关于超时重传后的ssthresh设置问题的争议 1、Richard Stevens在《TCP/IP详解》中把临界窗口值定为上次发生拥塞时的发送窗口的一半 2、RFC5681则认为应是发生拥塞时未被确认的数据量的1/2（又称FlightSize），且不小于2MSS 3、Westwood/Westwood+算法则这样认为：先推算出有多少包已被送达到接收方（可根据收方回应的ACK来推算），从而精确地估算发生拥塞时的带宽，最后再依据带宽来确认新的拥塞窗口 4、Vegas算法则这样认为：引入全新的概念，摒弃之前的在丢包后才调节拥塞窗口的做法。其通过监控网络状态来调整发包速度，实现“真正的拥塞避免”。当网络良好时，RTT较稳定，此时可以增加拥塞窗口；当网络繁忙时，RTT增加，此时减小拥塞窗口 5、Compound算法这样认为：同时维持两个拥塞窗口，一个类似于Vegas，另一个类似于RFC5681，真正起作用的是两者之和（Win7上其默认关闭） 6、BIC算法/CUBIC算法 分别是linux2.6.18和linux 2.6.19所采用，目前尚未研究  关于TCP/IP的几点精炼总结：
+（1）当无拥塞时，发送窗口越大，性能越好。∴在带宽没有限制的情况下，应尽量增加接受窗口，比如启用Scale Option （2）若经常发生拥塞，则限制发送窗口反而可以提高性能，∵即便万分之一的重传对性能的影响都非常大。很多OS上可通过限制接收窗口的方法来↓发送窗口 （3）超时重传对于性能影响最大，∵RTO时间内未传输任何数据，而Cwnd会被设成1MSS，应尽量避免 （4）快速重传对性能影响小一些，∵无等待时间，且Cwnd减幅不大 （5）SACK和NewReno有利于增加重传效率，增加传输性能 （6）丢包对极小文件的影响比打文件严重。深层原因是因为读写一个小文件需要的包数很少，∴丢包时往往凑不满三个Dup ACK，只能等待超时重传；而大文件有较大可能触发快速重传  </description>
+    </item>
+    
+  </channel>
+</rss>
