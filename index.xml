@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>liiblue</title>
     <link>https://liiblue.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on liiblue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Jan 2020 17:45:11 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jan 2020 16:50:38 +0800</lastBuildDate>
     
 	<atom:link href="https://liiblue.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>垃圾回收器的原理</title>
+      <link>https://liiblue.github.io/post/gcgarbage-collection/</link>
+      <pubDate>Mon, 06 Jan 2020 16:50:38 +0800</pubDate>
+      
+      <guid>https://liiblue.github.io/post/gcgarbage-collection/</guid>
+      <description>在Java语言中，GC(Garbage Collection，垃圾回收)是一个非常重要的概念，  它的主要作用是回收程序中不再使用的内存。在使用C/C++语言进行程序开发时， 开发人员必须非常仔细地管理好内存的分配与释放，如果忘记或者错误地释放内 存往往会导致程序运行不正确甚至是程序的崩溃。为了减轻开发人员的工作，同 时增加系统的安全性与稳定性，Java语言提供了垃圾回收器来自动检测对象的作 用域，实现自动地把不再被使用的存储空间释放掉。具体而言，垃圾回收器主要 负责完成3项任务：分配内存、确保被引用对象的内存不被错误地回收以及回收不 再被引用的对象的内存空间。 垃圾回收器的存在，一方面把开发人员从释放内存的复杂的工作中解脱出来， 提高了开发人员的生产效率；另外一方面，对开发人员屏蔽了释放内存的方法，可 以避免因为开发人员错误地操作内存从而导致应用程序的崩溃，保证了程序的稳定 性。但是，垃圾回收也带来了问题，为了实现垃圾回收，垃圾回收器必须跟踪内存 的使用情况，释放没用的对象，在完成内存的释放后，还需要处理堆中的碎片，这 些操作必定会增加JVM的负担，从而降低程序的执行效率。</description>
+    </item>
     
     <item>
       <title>你可能没有细究过的TCP/IP</title>
